@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 [[ "$1" == "source" ]] || \
 
-echo 'Dotfiles - "Cowboy" Ben Alman - http://benalman.com/'
+echo 'Dotfiles - Aaron Egaas - http://aaronegaas.com/'
 
 if [[ "$1" == "-h" || "$1" == "--help" ]]; then cat <<HELP
 
 Usage: $(basename "$0")
 
 See the README for documentation.
-https://github.com/cowboy/dotfiles
+https://github.com/aegaas/dotfiles-1
 
-Copyright (c) 2014 "Cowboy" Ben Alman
+Copyright (c) 2018 Aaron Egaas
 Licensed under the MIT license.
 http://benalman.com/about/license/
 HELP
@@ -69,8 +69,12 @@ function is_ubuntu() {
 function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
 }
+function is_chromeos() {
+  [[ "$OSTYPE" =~ ^linux-gnu ]] || return 1
+}
+
 function get_os() {
-  for os in osx ubuntu ubuntu_desktop; do
+  for os in osx ubuntu ubuntu_desktop chromeos; do
     is_$os; [[ $? == ${1:-0} ]] && echo $os
   done
 }
