@@ -10,6 +10,8 @@ pip_packages=(
   powerline-status
   psutil
   tmuxp
+  pipenv
+  ansible
 )
 
 installed_pip_packages="$($pip_cmd list 2>/dev/null | awk '{print $1}')"
